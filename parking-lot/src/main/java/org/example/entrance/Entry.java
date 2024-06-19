@@ -11,14 +11,20 @@ import java.time.Instant;
 public class Entry {
     private ParkingSpot parkingSpot;
 
-    public void reserveParkingSpot(Vehicle vehicle){
+    Vehicle vehicle;
+
+    public Entry(Vehicle vehicle){
+        this.vehicle = vehicle;
+    }
+
+    public void reserveParkingSpot(){
         ParkingSpotFactory parkingSpotFactory = new ParkingSpotFactory();
         ParkingSpotManager parkingSpotManager = parkingSpotFactory.getParkingManager(vehicle.getType());
         parkingSpot = parkingSpotManager.parkVehicle(vehicle);
     }
 
-    public Ticket generateTicket(Vehicle vehicle){
-        reserveParkingSpot(vehicle);
+    public Ticket generateTicket(){
+        reserveParkingSpot();
         return Ticket.builder().entryTime(Instant.now()).parkingSpot(parkingSpot).vehicleType(vehicle.getType()).build();
     }
 }

@@ -10,14 +10,23 @@ import java.time.Duration;
 import java.time.Instant;
 
 public class Exit {
-    public void unReserveParkingSpot(Vehicle vehicle, Ticket ticket){
+
+    Vehicle vehicle;
+    Ticket ticket;
+
+    public Exit(Vehicle vehicle, Ticket ticket){
+        this.vehicle = vehicle;
+        this.ticket = ticket;
+    }
+
+    public void unReserveParkingSpot(){
         ParkingSpotFactory parkingSpotFactory = new ParkingSpotFactory();
         ParkingSpotManager parkingSpotManager = parkingSpotFactory.getParkingManager(vehicle.getType());
         parkingSpotManager.unParkVehicle(ticket, vehicle);
     }
 
-    public int calculateFare(Vehicle vehicle, Ticket ticket){
-        unReserveParkingSpot(vehicle, ticket);
+    public int calculateFare(){
+        unReserveParkingSpot();
         long duration = Duration.between(ticket.getEntryTime(), Instant.now()).toMinutes();
         return (int) duration * 2;
     }

@@ -13,13 +13,14 @@ public class FourWParkingSpotManager extends ParkingSpotManager {
     private static FourWParkingSpotManager instance;
 
     private FourWParkingSpotManager() {
-        super(getParkingSpots(), new NearElevator(), VehicleType.FOUR_WHEELER);
+        super(getParkingSpots(), new NearElevator(getParkingSpots()), VehicleType.FOUR_WHEELER);
     }
 
     public static FourWParkingSpotManager getInstance() {
         if (instance == null) {
             instance = new FourWParkingSpotManager();
         }
+
         return instance;
     }
 
@@ -27,6 +28,7 @@ public class FourWParkingSpotManager extends ParkingSpotManager {
         if (parkingSpots == null) {
             parkingSpots = initParkingSpots();
         }
+
         return parkingSpots;
     }
 
@@ -36,10 +38,7 @@ public class FourWParkingSpotManager extends ParkingSpotManager {
             ParkingSpot parkingSpot = new ParkingSpot(i, true, VehicleType.FOUR_WHEELER, "");
             parkingSpots.add(parkingSpot);
         }
-        return parkingSpots;
-    }
 
-    public void updateParkingSpots(List<ParkingSpot> updatedParkingSpots) {
-        parkingSpots = updatedParkingSpots;
+        return parkingSpots;
     }
 }
