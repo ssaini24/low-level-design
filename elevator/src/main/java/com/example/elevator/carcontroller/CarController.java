@@ -39,6 +39,7 @@ public class CarController {
 
     public void controlElevatorCar(){
         if (elevatorCar.getDisplay().getDirection() == Direction.UP){
+            System.out.println("processing UP requests of size: " + minPQ.size());
             while(!minPQ.isEmpty()){
                 User user = minPQ.poll();
                 elevatorCar.move(user.getCurrFloor(), user.getDesFloor());
@@ -47,9 +48,19 @@ public class CarController {
 
             while (!pendingQueue.isEmpty()){
                 User user = pendingQueue.poll();
-                minPQ.add(user);
+                Direction direction = getDirection(user);
+                if (direction == Direction.UP){
+                    minPQ.add(user);
+                } else {
+                    maxPQ.add(user);
+                }
             }
+
+            Display display = elevatorCar.getDisplay();
+            display.setDirection(Direction.DOWN);
+            elevatorCar.setDisplay(display);
         } else {
+            System.out.println("processing Down requests of size: " + minPQ.size());
             while(!maxPQ.isEmpty()){
                 User user = maxPQ.poll();
                 elevatorCar.move(user.getCurrFloor(), user.getDesFloor());
@@ -58,8 +69,25 @@ public class CarController {
 
             while (!pendingQueue.isEmpty()){
                 User user = pendingQueue.poll();
-                maxPQ.add(user);
+                Direction direction = getDirection(user);
+                if (direction == Direction.UP){
+                    minPQ.add(user);
+                } else {
+                    maxPQ.add(user);
+                }
             }
+
+            Display display = elevatorCar.getDisplay();
+            display.setDirection(Direction.UP);
+            elevatorCar.setDisplay(display);
+        }
+    }
+
+    public Direction getDirection(User user){
+        if (user.getDesFloor() > user.getCurrFloor()){
+            return Direction.UP;
+        } else {
+            return Direction.DOWN;
         }
     }
 

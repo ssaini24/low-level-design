@@ -23,7 +23,19 @@ public class ElevatorCar {
         return status;
     }
 
-    public void move(int curFloor, int desFloor){
-    System.out.println("moving from curFloor " + curFloor + " to destination floor" + desFloor);
+  public void setDisplay(Display display) {
+    this.display = display;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public void setStatus(ElevatorStatus status) {
+    this.status = status;
+  }
+
+  public void move(int curFloor, int desFloor){
+      System.out.println("moving from curFloor " + curFloor + " to destination floor" + desFloor);
   }
 }

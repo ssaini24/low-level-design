@@ -17,4 +17,12 @@ public class Display {
   public int getFloor() {
     return floor;
   }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
+  }
+
+  public void setFloor(int floor) {
+    this.floor = floor;
+  }
 }
