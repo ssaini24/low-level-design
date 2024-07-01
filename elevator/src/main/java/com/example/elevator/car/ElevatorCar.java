@@ -4,17 +4,26 @@ public class ElevatorCar {
   int id;
   Display display;
   ElevatorStatus status;
-  InternalButtons internalButtons;
 
-  public ElevatorCar(int id, Display display, ElevatorStatus status,
-      InternalButtons internalButtons) {
+  public ElevatorCar(int id, Display display, ElevatorStatus status) {
     this.id = id;
     this.display = display;
     this.status = status;
-    this.internalButtons = internalButtons;
   }
 
-  public void move(int floor, Direction direction){
+    public Display getDisplay() {
+        return display;
+    }
 
+    public int getId() {
+        return id;
+    }
+
+    public ElevatorStatus getStatus() {
+        return status;
+    }
+
+    public void move(int curFloor, int desFloor){
+    System.out.println("moving from curFloor " + curFloor + " to destination floor" + desFloor);
   }
 }
