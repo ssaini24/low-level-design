@@ -60,7 +60,7 @@ public class CarController {
             display.setDirection(Direction.DOWN);
             elevatorCar.setDisplay(display);
         } else {
-            System.out.println("processing Down requests of size: " + minPQ.size());
+            System.out.println("processing Down requests of size: " + maxPQ.size());
             while(!maxPQ.isEmpty()){
                 User user = maxPQ.poll();
                 elevatorCar.move(user.getCurrFloor(), user.getDesFloor());

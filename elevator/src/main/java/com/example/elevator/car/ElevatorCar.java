@@ -36,6 +36,6 @@ public class ElevatorCar {
   }
 
   public void move(int curFloor, int desFloor){
-      System.out.println("moving from curFloor " + curFloor + " to destination floor" + desFloor);
+      System.out.println("moving from curFloor " + curFloor + " to destination floor " + desFloor);
   }
 }
