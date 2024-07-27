@@ -28,7 +28,7 @@ public class ParkingSpotManager {
     }
 
     public long getTotalParkingSpots(){
-        return parkingSpotList.stream().filter((ParkingSpot p) -> p.getIsEmpty()).count();
+        return parkingSpotList.stream().filter(ParkingSpot::getIsEmpty).count();
     }
 
     public void deleteParkingSpot(int id){
@@ -36,12 +36,8 @@ public class ParkingSpotManager {
         parkingSpotList.remove(parkingSpot);
     }
 
-    private ParkingSpot searchParking(){
-        return parkVehicleStrategy.findParking();
-    }
-
     public ParkingSpot parkVehicle(Vehicle vehicle){
-        ParkingSpot parkingSpot = searchParking();
+        ParkingSpot parkingSpot = parkVehicleStrategy.findParking();
         if (Objects.nonNull(parkingSpot)){
             parkingSpotList.remove(parkingSpot);
 
